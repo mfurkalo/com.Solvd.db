@@ -1,9 +1,11 @@
 /*
- * Copyright (c) 2022 by Maksym Furkalo
- * use it for free
+ *  Copyright (c)
+ *  Maksym Furkalo,
+ *  work with DB using the DAO pattern,
+ *  use for free
  */
 
-package core.DAO.models;
+package DAO.models;
 
 import java.util.Date;
 
@@ -12,7 +14,7 @@ public class Workorder {
     private Date request_date;
     private float amount;
     private Date estimate_date;
-    private boolean status;
+    private int status;
     private String remarks;
     private int customer_id;
     private int technician_id;
@@ -67,11 +69,11 @@ public class Workorder {
         this.estimate_date = estimate_date;
     }
 
-    public boolean isStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

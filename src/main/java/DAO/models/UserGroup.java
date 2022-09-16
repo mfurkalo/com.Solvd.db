@@ -1,9 +1,11 @@
 /*
- * Copyright (c) 2022 by Maksym Furkalo
- * use it for free
+ *  Copyright (c)
+ *  Maksym Furkalo,
+ *  work with DB using the DAO pattern,
+ *  use for free
  */
 
-package core.DAO.models;
+package DAO.models;
 
 public class UserGroup {
     private int id;
@@ -14,6 +16,10 @@ public class UserGroup {
     private boolean allowDelete;
     private boolean allowPrint;
     private boolean allowImport;
+    private boolean allowExport;
+
+    public UserGroup() {
+    }
 
     @Override
     public String toString() {
@@ -26,6 +32,7 @@ public class UserGroup {
                 ", allowDelete=" + allowDelete +
                 ", allowPrint=" + allowPrint +
                 ", allowImport=" + allowImport +
+                ", allowExport=" + allowExport +
                 '}';
     }
 
@@ -91,5 +98,13 @@ public class UserGroup {
 
     public void setAllowImport(boolean allowImport) {
         this.allowImport = allowImport;
+    }
+
+    public boolean isAllowExport() {
+        return allowExport;
+    }
+
+    public void setAllowExport(boolean allowExport) {
+        this.allowExport = allowExport;
     }
 }

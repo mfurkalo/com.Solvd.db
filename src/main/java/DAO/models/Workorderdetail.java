@@ -1,9 +1,11 @@
 /*
- * Copyright (c) 2022.  by Maksym Furkalo
- * use it for free
+ *  Copyright (c)
+ *  Maksym Furkalo,
+ *  work with DB using the DAO pattern,
+ *  use for free
  */
 
-package core.DAO.models;
+package DAO.models;
 
 public class Workorderdetail {
     private int id;

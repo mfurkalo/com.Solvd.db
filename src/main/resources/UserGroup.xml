@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class>
+    <UserGroup>
+        <id>15</id>
+        <name>xmluser</name>
+        <description>for test usage</description>
+        <allowAdd>true</allowAdd>
+        <allowEdit>true</allowEdit>
+        <allowDelete>false</allowDelete>
+        <allowPrint>true</allowPrint>
+        <allowImport>true</allowImport>
+        <allowExport>false</allowExport>
+    </UserGroup>
+</class>

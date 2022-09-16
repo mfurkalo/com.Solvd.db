@@ -1,9 +1,11 @@
 /*
- * Copyright (c) 2022.  by Maksym Furkalo
- * use it for free
+ *  Copyright (c)
+ *  Maksym Furkalo,
+ *  work with DB using the DAO pattern,
+ *  use for free
  */
 
-package core.DAO.interfaces;
+package DAO.interfaces;
 
 public interface IItemDAO<T> {
     void create(T item);

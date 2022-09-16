@@ -1,9 +1,11 @@
 /*
- * Copyright (c) 2022 by Maksym Furkalo
- * use it for free
+ *  Copyright (c)
+ *  Maksym Furkalo,
+ *  work with DB using the DAO pattern,
+ *  use for free
  */
 
-package core.DAO.models;
+package DAO.models;
 
 public class User {
     private int id;
@@ -12,8 +14,8 @@ public class User {
     private String fullname;
     private String phone;
     private String email;
-    private boolean status;
-    private String group_id;
+    private int status;
+    private int group_id;
 
     @Override
     public String toString() {
@@ -77,19 +79,19 @@ public class User {
         this.email = email;
     }
 
-    public boolean isStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
-    public String getGroup_id() {
+    public int getGroup_id() {
         return group_id;
     }
 
-    public void setGroup_id(String group_id) {
+    public void setGroup_id(int group_id) {
         this.group_id = group_id;
     }
 }

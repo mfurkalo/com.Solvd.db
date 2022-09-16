@@ -1,0 +1,20 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="class">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Workorderdetail">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:int" name="id"/>
+                            <xs:element type="xs:int" name="quantity"/>
+                            <xs:element type="xs:float" name="amount"/>
+                            <xs:element type="xs:float" name="total"/>
+                            <xs:element type="xs:int" name="workorder_id"/>
+                            <xs:element type="xs:int" name="item_id"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
