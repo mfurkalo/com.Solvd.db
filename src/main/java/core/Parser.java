@@ -5,7 +5,7 @@
  *  use for free
  */
 
-package saxHandlers;
+package core;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -13,6 +13,8 @@ import org.apache.logging.log4j.Logger;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
+import utils.interfaces.IparseSaxPojo;
+
 import javax.xml.XMLConstants;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -36,12 +38,12 @@ public class Parser implements IparseSaxPojo {
     }
 
     @Override
-    public boolean validate(String pathSsd, String pathXml) {
+    public boolean validate(String pathXsd, String pathXml) {
         String language = XMLConstants.W3C_XML_SCHEMA_NS_URI;
         Schema schema = null;
         SchemaFactory schemaFactory = SchemaFactory.newInstance(language);
         try {
-            schema = schemaFactory.newSchema(new File(pathSsd));
+            schema = schemaFactory.newSchema(new File(pathXsd));
         } catch (SAXException e) {
             throw new RuntimeException(e);
         }

@@ -5,7 +5,7 @@
  *  use for free
  */
 
-package saxHandlers;
+package utils.interfaces;
 
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -13,9 +13,9 @@ import org.xml.sax.helpers.DefaultHandler;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
-interface IparseSaxPojo {
+public interface IparseSaxPojo {
 
-     DefaultHandler  parceSax(String path, DefaultHandler handler)throws ParserConfigurationException, SAXException, IOException;
+    DefaultHandler parceSax(String path, DefaultHandler handler) throws ParserConfigurationException, SAXException, IOException;
 
-     boolean validate(String pathSchema, String pathXml);
+    boolean validate(String pathSchema, String pathXml);
 }
