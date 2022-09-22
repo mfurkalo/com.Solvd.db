@@ -30,7 +30,8 @@ public class Parser implements IparseSaxPojo {
 
 
     @Override
-    public DefaultHandler parceSax(String path, DefaultHandler handler) throws ParserConfigurationException, SAXException, IOException {
+    public <T extends DefaultHandler> T parceSax(String path, T handler) throws ParserConfigurationException
+            , SAXException, IOException {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser saxParser = factory.newSAXParser();
         saxParser.parse(path, handler);
@@ -40,7 +41,7 @@ public class Parser implements IparseSaxPojo {
     @Override
     public boolean validate(String pathXsd, String pathXml) {
         String language = XMLConstants.W3C_XML_SCHEMA_NS_URI;
-        Schema schema = null;
+        Schema schema;
         SchemaFactory schemaFactory = SchemaFactory.newInstance(language);
         try {
             schema = schemaFactory.newSchema(new File(pathXsd));

@@ -15,7 +15,8 @@ import java.io.IOException;
 
 public interface IparseSaxPojo {
 
-    DefaultHandler parceSax(String path, DefaultHandler handler) throws ParserConfigurationException, SAXException, IOException;
+    <T extends DefaultHandler> T parceSax(String path, T handler) throws ParserConfigurationException, SAXException
+            , IOException;
 
     boolean validate(String pathSchema, String pathXml);
 }

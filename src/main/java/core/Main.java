@@ -97,20 +97,15 @@ public class Main {
 
 
     public static void xmlSaxOperation() throws ParserConfigurationException, SAXException, IOException {
-        ItemCategoryHandler itemCategoryHandler = new ItemCategoryHandler();
-        ServiceHandler serviceHandler = new ServiceHandler();
-        UserGroupHandler userGroupHandler = new UserGroupHandler();
-        WorkorderDetailHandler workorderDetailHandler = new WorkorderDetailHandler();
-        ItemCategory iCat = ((ItemCategoryHandler) new Parser().parceSax(ITEM_CATEGORY_PATH, itemCategoryHandler))
-                .getItemCategory();
-        System.out.println("Parsed item category: " + iCat);
-        Service ser = ((ServiceHandler) new Parser().parceSax(SERVICE_PATH, serviceHandler)).getService();
-        System.out.println("Parsed service : " + ser);
-        UserGroup uGroup1 = ((UserGroupHandler) new Parser().parceSax(USER_GROUP_PATH, userGroupHandler)).getUserGroup();
-        System.out.println("Parsed user group : " + uGroup1);
-        Workorderdetail workOrDet = ((WorkorderDetailHandler) new Parser().parceSax(WORKORDER_DETAIL_PATH
-                , workorderDetailHandler)).getWorkorderdetail();
-        System.out.println("Parsed workorder detail : " + workOrDet);
-        System.out.println("Is the Service.xml valid: " + new Parser().validate(SERVICE_XSD, SERVICE_PATH));
+        ItemCategory iCat = new Parser().parceSax(ITEM_CATEGORY_PATH, new ItemCategoryHandler()).getItemCategory();
+        System.out.printf("Parsed item category: %s\n", iCat);
+        Service ser = new Parser().parceSax(SERVICE_PATH, new ServiceHandler()).getService();
+        System.out.printf("Parsed service: %s\n", ser);
+        UserGroup uGroup1 = new Parser().parceSax(USER_GROUP_PATH, new UserGroupHandler()).getUserGroup();
+        System.out.printf("Parsed user group: %s\n", uGroup1);
+        Workorderdetail workOrDet = new Parser().parceSax(WORKORDER_DETAIL_PATH, new WorkorderDetailHandler())
+                .getWorkorderdetail();
+        System.out.printf("Parsed workorder detail: %s\n", workOrDet);
+        System.out.printf("Is the Service.xml valid? : %s", new Parser().validate(SERVICE_XSD, SERVICE_PATH));
     }
 }
