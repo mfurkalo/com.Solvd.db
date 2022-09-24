@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class>
-    <Workorderdetail>
-        <id>10</id>
-        <quantity>2</quantity>
-        <amount>10.5</amount>
-        <total>21</total>
-        <workorder_id>11</workorder_id>
-        <item_id>4</item_id>
-    </Workorderdetail>
-</class>
+<Workorderdetail>
+    <id>10</id>
+    <quantity>2</quantity>
+    <amount>10.5</amount>
+    <total>21</total>
+    <workorder_id>11</workorder_id>
+    <item_id>4</item_id>
+</Workorderdetail>

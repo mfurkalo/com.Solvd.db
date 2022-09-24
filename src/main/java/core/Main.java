@@ -11,7 +11,6 @@ import DAO.models.*;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.xml.sax.SAXException;
 import saxHandlers.ItemCategoryHandler;
 import saxHandlers.ServiceHandler;
 import saxHandlers.UserGroupHandler;
@@ -19,33 +18,23 @@ import saxHandlers.WorkorderDetailHandler;
 import services.UserGroupServices;
 import services.UserServices;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 
 public class Main {
     static Logger log = LogManager.getLogger(Main.class.getName());
     public static final String ITEM_CATEGORY_PATH = "src/main/resources/xml/ItemCategory.xml";
     public static final String SERVICE_PATH = "src/main/resources/xml/Service.xml";
-    public static final String SERVICE_XSD = "src/main/resources/xml/Service.xsd";
+    public static final String SERVICE_XSD_PATH = "src/main/resources/xml/Service.xsd";
     public static final String USER_GROUP_PATH = "src/main/resources/xml/UserGroup.xml";
     public static final String WORKORDER_DETAIL_PATH = "src/main/resources/xml/WorkorderDetail.xml";
+    public static final String WORKORDER_DETAIL_XSD_PATH = "src/main/resources/xml/WorkorderDetail.xsd";
 
     public static void main(String[] args) {
         dbOperations();
-
-        try {
-            xmlSaxOperation();
-        } catch (ParserConfigurationException e) {
-            log.log(Level.FATAL, e.getMessage(), e);
-            throw new RuntimeException(e);
-        } catch (SAXException e) {
-            log.log(Level.FATAL, e.getMessage(), e);
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            log.log(Level.FATAL, "The file is not found");
-            log.log(Level.FATAL, e.getMessage(), e);
-            throw new RuntimeException(e);
-        }
+        xmlSaxOperation();
+        xmlJaxbOperation();
     }
 
     public static void dbOperations() {
@@ -96,16 +85,49 @@ public class Main {
     }
 
 
-    public static void xmlSaxOperation() throws ParserConfigurationException, SAXException, IOException {
-        ItemCategory iCat = new Parser().parceSax(ITEM_CATEGORY_PATH, new ItemCategoryHandler()).getItemCategory();
+    public static void xmlSaxOperation() {
+        ItemCategory iCat = new Parser().parse(ITEM_CATEGORY_PATH, new ItemCategoryHandler()).getItemCategory();
         System.out.printf("Parsed item category: %s\n", iCat);
-        Service ser = new Parser().parceSax(SERVICE_PATH, new ServiceHandler()).getService();
+        Service ser = new Parser().parse(SERVICE_PATH, new ServiceHandler()).getService();
         System.out.printf("Parsed service: %s\n", ser);
-        UserGroup uGroup1 = new Parser().parceSax(USER_GROUP_PATH, new UserGroupHandler()).getUserGroup();
+        UserGroup uGroup1 = new Parser().parse(USER_GROUP_PATH, new UserGroupHandler()).getUserGroup();
         System.out.printf("Parsed user group: %s\n", uGroup1);
-        Workorderdetail workOrDet = new Parser().parceSax(WORKORDER_DETAIL_PATH, new WorkorderDetailHandler())
+        Workorderdetail workOrDet = new Parser().parse(WORKORDER_DETAIL_PATH, new WorkorderDetailHandler())
                 .getWorkorderdetail();
         System.out.printf("Parsed workorder detail: %s\n", workOrDet);
-        System.out.printf("Is the Service.xml valid? : %s", new Parser().validate(SERVICE_XSD, SERVICE_PATH));
+        System.out.printf("Is the Service.xml valid? : %s\n", new Parser().validate(SERVICE_XSD_PATH, SERVICE_PATH));
+        System.out.printf("Is the WorkorderDetail.xml valid? : %s\n", new Parser().validate(WORKORDER_DETAIL_XSD_PATH
+                , WORKORDER_DETAIL_PATH));
+    }
+
+    public static void marshal() throws JAXBException {
+
+        ItemCategory icat = new ItemCategory();
+        icat.setId(34);
+        icat.setName("Universal Category");
+        JAXBContext context = JAXBContext.newInstance(ItemCategory.class);
+        Marshaller mar = context.createMarshaller();
+        mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        mar.marshal(icat, System.out);
+    }
+
+    public static void xmlJaxbOperation() {
+        Service ser = new ParseJaxb().parse(SERVICE_PATH, Service.class);
+        System.out.printf("Parsed service: %s\n", ser);
+        System.out.printf("Is the Service.xml valid? : %s\n", new ParseJaxb().validate(SERVICE_XSD_PATH, SERVICE_PATH
+                , Service.class));
+        ItemCategory iCat = new ParseJaxb().parse(ITEM_CATEGORY_PATH, ItemCategory.class);
+        System.out.printf("Parsed item category: %s\n", iCat);
+        UserGroup uGroup1 = new ParseJaxb().parse(USER_GROUP_PATH, UserGroup.class);
+        System.out.printf("Parsed user group: %s\n", uGroup1);
+        Workorderdetail workOrDet = new ParseJaxb().parse(WORKORDER_DETAIL_PATH, Workorderdetail.class);
+        System.out.printf("Parsed workorder detail: %s\n", workOrDet);
+        System.out.printf("Is the WorkorderDetail.xml valid? : %s\n", new ParseJaxb().validate(WORKORDER_DETAIL_XSD_PATH
+                , WORKORDER_DETAIL_PATH, Workorderdetail.class));
+        try {
+            marshal();
+        } catch (JAXBException e) {
+            log.log(Level.FATAL, e.getMessage(), e);
+        }
     }
 }

@@ -7,6 +7,13 @@
 
 package DAO.models;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "User")
+@XmlType(propOrder = {"id", "username", "password", "fullname", "phone", "email", "status", "group_id"})
+
 public class User {
     private int id;
     private String username;
@@ -35,6 +42,7 @@ public class User {
         return id;
     }
 
+    @XmlElement(name = "id")
     public void setId(int id) {
         this.id = id;
     }
@@ -43,6 +51,7 @@ public class User {
         return username;
     }
 
+    @XmlElement(name = "username")
     public void setUsername(String username) {
         this.username = username;
     }
@@ -51,6 +60,7 @@ public class User {
         return password;
     }
 
+    @XmlElement(name = "password")
     public void setPassword(String password) {
         this.password = password;
     }
@@ -59,6 +69,7 @@ public class User {
         return fullname;
     }
 
+    @XmlElement(name = "fullname")
     public void setFullname(String fullname) {
         this.fullname = fullname;
     }
@@ -67,6 +78,7 @@ public class User {
         return phone;
     }
 
+    @XmlElement(name = "phone")
     public void setPhone(String phone) {
         this.phone = phone;
     }
@@ -75,6 +87,7 @@ public class User {
         return email;
     }
 
+    @XmlElement(name = "email")
     public void setEmail(String email) {
         this.email = email;
     }
@@ -83,6 +96,7 @@ public class User {
         return status;
     }
 
+    @XmlElement(name = "status")
     public void setStatus(int status) {
         this.status = status;
     }
@@ -91,6 +105,7 @@ public class User {
         return group_id;
     }
 
+    @XmlElement(name = "group_id")
     public void setGroup_id(int group_id) {
         this.group_id = group_id;
     }

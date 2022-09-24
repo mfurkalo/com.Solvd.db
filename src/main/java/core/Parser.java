@@ -27,14 +27,29 @@ import java.io.File;
 import java.io.IOException;
 
 public class Parser implements IparseSaxPojo {
+    static Logger log = LogManager.getLogger(Parser.class.getName());
 
 
     @Override
-    public <T extends DefaultHandler> T parceSax(String path, T handler) throws ParserConfigurationException
-            , SAXException, IOException {
+    public <T extends DefaultHandler> T parse(String path, T handler) {
         SAXParserFactory factory = SAXParserFactory.newInstance();
-        SAXParser saxParser = factory.newSAXParser();
-        saxParser.parse(path, handler);
+        SAXParser saxParser = null;
+        try {
+            saxParser = factory.newSAXParser();
+        } catch (ParserConfigurationException e) {
+            log.log(Level.FATAL, e.getMessage(), e);
+
+        } catch (SAXException e) {
+            log.log(Level.FATAL, e.getMessage(), e);
+        }
+        try {
+            saxParser.parse(path, handler);
+        } catch (SAXException e) {
+            log.log(Level.FATAL, e.getMessage(), e);
+
+        } catch (IOException e) {
+            log.log(Level.FATAL, e.getMessage(), e);
+        }
         return handler;
     }
 
@@ -46,6 +61,7 @@ public class Parser implements IparseSaxPojo {
         try {
             schema = schemaFactory.newSchema(new File(pathXsd));
         } catch (SAXException e) {
+            log.log(Level.FATAL, e.getMessage(), e);
             throw new RuntimeException(e);
         }
         Validator validator = schema.newValidator();

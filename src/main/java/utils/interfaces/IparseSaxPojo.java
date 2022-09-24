@@ -7,16 +7,11 @@
 
 package utils.interfaces;
 
-import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
-
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 
 public interface IparseSaxPojo {
 
-    <T extends DefaultHandler> T parceSax(String path, T handler) throws ParserConfigurationException, SAXException
-            , IOException;
+    <T extends DefaultHandler> T parse(String path, T handler);
 
     boolean validate(String pathSchema, String pathXml);
 }
