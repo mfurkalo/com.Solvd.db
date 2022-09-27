@@ -7,20 +7,13 @@
 
 package core;
 
-import DAO.models.*;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import saxHandlers.ItemCategoryHandler;
-import saxHandlers.ServiceHandler;
-import saxHandlers.UserGroupHandler;
-import saxHandlers.WorkorderDetailHandler;
+import DAO.models.User;
+import DAO.models.UserGroup;
+import DAO.mySQL.ItemCategoryDao;
 import services.UserGroupServices;
 import services.UserServices;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
+import java.util.List;
 
 public class Main {
     static Logger log = LogManager.getLogger(Main.class.getName());
