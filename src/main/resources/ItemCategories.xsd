@@ -1,8 +1,8 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-    <xs:element name="class">
+    <xs:element name="ItemCategories">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="ItemCategory">
+                <xs:element name="ItemCategory" maxOccurs="unbounded" minOccurs="0">
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element type="xs:int" name="id"/>

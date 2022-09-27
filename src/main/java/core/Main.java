@@ -9,8 +9,11 @@ package core;
 
 import DAO.models.User;
 import DAO.models.UserGroup;
+import DAO.mySQL.ItemCategoryDao;
 import services.UserGroupServices;
 import services.UserServices;
+
+import java.util.List;
 
 public class Main {
 
@@ -26,6 +29,10 @@ public class Main {
         System.out.println(UserServices.getById(6));
         UserServices.update(main.testUser2());
         UserServices.removeById(6);
+        List result = new ItemCategoryDao().getAll();
+        result.forEach(r -> {
+            System.out.println(r);
+        });
     }
 
     UserGroup testUserGroup() {
