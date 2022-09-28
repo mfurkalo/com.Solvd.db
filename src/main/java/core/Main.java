@@ -8,6 +8,7 @@
 package core;
 
 import DAO.models.*;
+import DAO.mySQL.ItemCategoryDao;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,10 +22,13 @@ import services.UserServices;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import java.util.List;
 
 public class Main {
     static Logger log = LogManager.getLogger(Main.class.getName());
     public static final String ITEM_CATEGORY_PATH = "src/main/resources/xml/ItemCategory.xml";
+    public static final String ITEM_CATEGORIES_PATH = "src/main/resources/xml/ItemCategories.xml";
+    public static final String ITEM_CATEGORIES_XSD_PATH = "src/main/resources/xml/ItemCategories.xsd";
     public static final String SERVICE_PATH = "src/main/resources/xml/Service.xml";
     public static final String SERVICE_XSD_PATH = "src/main/resources/xml/Service.xsd";
     public static final String USER_GROUP_PATH = "src/main/resources/xml/UserGroup.xml";
@@ -48,6 +52,8 @@ public class Main {
         System.out.println(UserServices.getById(6));
         UserServices.update(main.testUser2());
         UserServices.removeById(6);
+        List result = new ItemCategoryDao().getAll();
+        result.forEach(i -> System.out.println(i));
     }
 
     UserGroup testUserGroup() {
@@ -88,8 +94,13 @@ public class Main {
     }
 
     public static void xmlSaxOperation() {
-        ItemCategory iCat = new Parser().parse(ITEM_CATEGORY_PATH, new ItemCategoryHandler()).getItemCategory();
+        ItemCategory iCat = new Parser().parse(ITEM_CATEGORY_PATH, new ItemCategoryHandler()).getItemCategories().get(0);
         System.out.printf("Parsed item category: %s\n", iCat);
+        var itemCategories = new Parser().parse(ITEM_CATEGORIES_PATH, new ItemCategoryHandler())
+                .getItemCategories();
+        itemCategories.forEach(i -> System.out.println(i));
+        System.out.printf("Is the ItemCategories.xml valid? : %s\n", new Parser().validate(ITEM_CATEGORIES_XSD_PATH
+                , ITEM_CATEGORIES_PATH));
         Service ser = new Parser().parse(SERVICE_PATH, new ServiceHandler()).getService();
         System.out.printf("Parsed service: %s\n", ser);
         UserGroup uGroup1 = new Parser().parse(USER_GROUP_PATH, new UserGroupHandler()).getUserGroup();

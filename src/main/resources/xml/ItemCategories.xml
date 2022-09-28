@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ItemCategories>
+    <ItemCategory>
+        <id>1</id>
+        <name>printer cartridge refilling</name>
+    </ItemCategory>
+    <ItemCategory>
+        <id>2</id>
+        <name>laptop</name>
+    </ItemCategory>
+    <ItemCategory>
+        <id>1</id>
+        <name>monitor</name>
+    </ItemCategory>
+</ItemCategories>
