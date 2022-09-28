@@ -34,11 +34,14 @@ public class Main {
     public static final String USER_GROUP_PATH = "src/main/resources/xml/UserGroup.xml";
     public static final String WORKORDER_DETAIL_PATH = "src/main/resources/xml/WorkorderDetail.xml";
     public static final String WORKORDER_DETAIL_XSD_PATH = "src/main/resources/xml/WorkorderDetail.xsd";
+    public static final String WORKORDER_DETAIL_JSN_PATH = "src/main/resources/json/WorkorderDetail.json";
+    public static final String USER_GROUP_JSN_PATH = "src/main/resources/json/UserGroup.json";
 
     public static void main(String[] args) {
         dbOperations();
         xmlSaxOperation();
         xmlJaxbOperation();
+        jsonOperations();
     }
 
     public static void dbOperations() {
@@ -90,7 +93,6 @@ public class Main {
         return user;
     }
 
-
     public static void xmlSaxOperation() {
         ItemCategory iCat = new Parser().parse(ITEM_CATEGORY_PATH, new ItemCategoryHandler()).getItemCategories().get(0);
         System.out.printf("Parsed item category: %s\n", iCat);
@@ -140,5 +142,15 @@ public class Main {
         } catch (JAXBException e) {
             log.log(Level.FATAL, e.getMessage(), e);
         }
+    }
+
+    public static void jsonOperations() {
+        JacksonReadWrite jReadWrite = new JacksonReadWrite();
+        ItemCategory icat = new ItemCategory();
+        icat.setId(34);
+        icat.setName("Universal Category");
+        System.out.println("RESULT: \n" + jReadWrite.unmarshal(icat));
+        System.out.println("RESULT dao: \n" + jReadWrite.marshall(WORKORDER_DETAIL_JSN_PATH, Workorderdetail.class));
+        System.out.println("RESULT dao: \n" + jReadWrite.marshall(USER_GROUP_JSN_PATH, UserGroup.class));
     }
 }

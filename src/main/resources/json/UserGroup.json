@@ -1,0 +1,11 @@
+{
+  "id": "15",
+  "name": "json_user",
+  "description": "for test usage",
+  "allowAdd": "true",
+  "allowEdit": "true",
+  "allowDelete": "false",
+  "allowPrint": "true",
+  "allowImport": "true",
+  "allowExport": "false"
+}
