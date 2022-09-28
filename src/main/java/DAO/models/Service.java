@@ -7,6 +7,10 @@
 
 package DAO.models;
 
+import javax.xml.bind.annotation.*;
+
+@XmlRootElement(name = "Service")
+@XmlType(propOrder = { "id", "name", "description", "amount" })
 public class Service {
     private int id;
     private String name;
@@ -26,7 +30,7 @@ public class Service {
     public int getId() {
         return id;
     }
-
+    @XmlElement(name = "id")
     public void setId(int id) {
         this.id = id;
     }
@@ -34,7 +38,7 @@ public class Service {
     public String getName() {
         return name;
     }
-
+    @XmlElement(name = "name")
     public void setName(String name) {
         this.name = name;
     }
@@ -42,7 +46,7 @@ public class Service {
     public String getDescription() {
         return description;
     }
-
+    @XmlElement(name = "description")
     public void setDescription(String description) {
         this.description = description;
     }
@@ -50,7 +54,7 @@ public class Service {
     public float getAmount() {
         return amount;
     }
-
+    @XmlElement(name = "amount")
     public void setAmount(float amount) {
         this.amount = amount;
     }

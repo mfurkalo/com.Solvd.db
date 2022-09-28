@@ -7,7 +7,14 @@
 
 package DAO.models;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Date;
+
+@XmlRootElement(name = "Workorder")
+@XmlType(propOrder = {"id", "request_date", "amount", "estimate_date", "status", "remarks", "customer_id", "technician_id," +
+        "processed_by_id", "service_id"})
 
 public class Workorder {
     private int id;
@@ -41,6 +48,7 @@ public class Workorder {
         return id;
     }
 
+    @XmlElement(name = "id")
     public void setId(int id) {
         this.id = id;
     }
@@ -49,6 +57,7 @@ public class Workorder {
         return request_date;
     }
 
+    @XmlElement(name = "request_date")
     public void setRequest_date(Date request_date) {
         this.request_date = request_date;
     }
@@ -57,6 +66,7 @@ public class Workorder {
         return amount;
     }
 
+    @XmlElement(name = "amount")
     public void setAmount(float amount) {
         this.amount = amount;
     }
@@ -65,6 +75,7 @@ public class Workorder {
         return estimate_date;
     }
 
+    @XmlElement(name = "estimate_date")
     public void setEstimate_date(Date estimate_date) {
         this.estimate_date = estimate_date;
     }
@@ -73,6 +84,7 @@ public class Workorder {
         return status;
     }
 
+    @XmlElement(name = "status")
     public void setStatus(int status) {
         this.status = status;
     }
@@ -81,6 +93,7 @@ public class Workorder {
         return remarks;
     }
 
+    @XmlElement(name = "remarks")
     public void setRemarks(String remarks) {
         this.remarks = remarks;
     }
@@ -89,6 +102,7 @@ public class Workorder {
         return customer_id;
     }
 
+    @XmlElement(name = "customer_id")
     public void setCustomer_id(int customer_id) {
         this.customer_id = customer_id;
     }
@@ -97,6 +111,7 @@ public class Workorder {
         return technician_id;
     }
 
+    @XmlElement(name = "technician_id")
     public void setTechnician_id(int technician_id) {
         this.technician_id = technician_id;
     }
@@ -105,6 +120,7 @@ public class Workorder {
         return processed_by_id;
     }
 
+    @XmlElement(name = "processed_by_id")
     public void setProcessed_by_id(int processed_by_id) {
         this.processed_by_id = processed_by_id;
     }
@@ -113,6 +129,7 @@ public class Workorder {
         return service_id;
     }
 
+    @XmlElement(name = "service_id")
     public void setService_id(int service_id) {
         this.service_id = service_id;
     }

@@ -7,6 +7,13 @@
 
 package DAO.models;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "UserGroup")
+@XmlType(propOrder = {"id", "name", "description", "allowAdd", "allowEdit", "allowDelete", "allowPrint", "allowImport"
+        , "allowExport"})
 public class UserGroup {
     private int id;
     private String name;
@@ -40,6 +47,7 @@ public class UserGroup {
         return id;
     }
 
+    @XmlElement(name = "id")
     public void setId(int id) {
         this.id = id;
     }
@@ -48,6 +56,7 @@ public class UserGroup {
         return name;
     }
 
+    @XmlElement(name = "name")
     public void setName(String name) {
         this.name = name;
     }
@@ -56,6 +65,7 @@ public class UserGroup {
         return description;
     }
 
+    @XmlElement(name = "description")
     public void setDescription(String description) {
         this.description = description;
     }
@@ -64,6 +74,7 @@ public class UserGroup {
         return allowAdd;
     }
 
+    @XmlElement(name = "allowAdd")
     public void setAllowAdd(boolean allowAdd) {
         this.allowAdd = allowAdd;
     }
@@ -72,6 +83,7 @@ public class UserGroup {
         return allowEdit;
     }
 
+    @XmlElement(name = "allowEdit")
     public void setAllowEdit(boolean allowEdit) {
         this.allowEdit = allowEdit;
     }
@@ -80,6 +92,7 @@ public class UserGroup {
         return allowDelete;
     }
 
+    @XmlElement(name = "allowDelete")
     public void setAllowDelete(boolean allowDelete) {
         this.allowDelete = allowDelete;
     }
@@ -88,6 +101,7 @@ public class UserGroup {
         return allowPrint;
     }
 
+    @XmlElement(name = "allowPrint")
     public void setAllowPrint(boolean allowPrint) {
         this.allowPrint = allowPrint;
     }
@@ -96,6 +110,7 @@ public class UserGroup {
         return allowImport;
     }
 
+    @XmlElement(name = "allowImport")
     public void setAllowImport(boolean allowImport) {
         this.allowImport = allowImport;
     }
@@ -104,6 +119,7 @@ public class UserGroup {
         return allowExport;
     }
 
+    @XmlElement(name = "allowExport")
     public void setAllowExport(boolean allowExport) {
         this.allowExport = allowExport;
     }

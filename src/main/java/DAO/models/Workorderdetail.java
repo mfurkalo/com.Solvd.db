@@ -7,6 +7,13 @@
 
 package DAO.models;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "Workorderdetail")
+@XmlType(propOrder = {"id", "quantity", "amount", "total", "workorder_id", "item_id"})
+
 public class Workorderdetail {
     private int id;
     private int quantity;
@@ -31,6 +38,7 @@ public class Workorderdetail {
         return id;
     }
 
+    @XmlElement(name = "id")
     public void setId(int id) {
         this.id = id;
     }
@@ -39,6 +47,7 @@ public class Workorderdetail {
         return quantity;
     }
 
+    @XmlElement(name = "quantity")
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
@@ -47,6 +56,7 @@ public class Workorderdetail {
         return amount;
     }
 
+    @XmlElement(name = "amount")
     public void setAmount(float amount) {
         this.amount = amount;
     }
@@ -55,6 +65,7 @@ public class Workorderdetail {
         return total;
     }
 
+    @XmlElement(name = "total")
     public void setTotal(float total) {
         this.total = total;
     }
@@ -63,6 +74,7 @@ public class Workorderdetail {
         return workorder_id;
     }
 
+    @XmlElement(name = "workorder_id")
     public void setWorkorder_id(int workorder_id) {
         this.workorder_id = workorder_id;
     }
@@ -71,6 +83,7 @@ public class Workorderdetail {
         return item_id;
     }
 
+    @XmlElement(name = "item_id")
     public void setItem_id(int item_id) {
         this.item_id = item_id;
     }

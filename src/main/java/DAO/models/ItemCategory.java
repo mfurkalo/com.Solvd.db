@@ -7,6 +7,13 @@
 
 package DAO.models;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "ItemCategory")
+@XmlType(propOrder = {"id", "name"})
+
 public class ItemCategory {
     private int id;
     private String name;
@@ -23,6 +30,7 @@ public class ItemCategory {
         return id;
     }
 
+    @XmlElement(name = "id")
     public void setId(int id) {
         this.id = id;
     }
@@ -31,6 +39,7 @@ public class ItemCategory {
         return name;
     }
 
+    @XmlElement(name = "name")
     public void setName(String name) {
         this.name = name;
     }
