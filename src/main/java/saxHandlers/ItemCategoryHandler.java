@@ -12,10 +12,16 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ItemCategoryHandler extends DefaultHandler {
+    private List<ItemCategory> itemCategories;
+
+    private static final String ITEMCATEGORIES = "ItemCategories";
+    private static final String ITEMCATEGORY = "ItemCategory";
     private static final String ID = "id";
     private static final String NAME = "name";
-    private ItemCategory itemCategory;
     private StringBuilder elementValue;
 
     @Override
@@ -29,12 +35,18 @@ public class ItemCategoryHandler extends DefaultHandler {
 
     @Override
     public void startDocument() throws SAXException {
-        itemCategory = new ItemCategory();
+        itemCategories = new ArrayList();
     }
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         switch (qName) {
+            case ITEMCATEGORIES:
+                itemCategories = new ArrayList<>();
+                break;
+            case ITEMCATEGORY:
+                itemCategories.add(new ItemCategory());
+                break;
             case ID:
                 elementValue = new StringBuilder();
                 break;
@@ -48,15 +60,21 @@ public class ItemCategoryHandler extends DefaultHandler {
     public void endElement(String uri, String localName, String qName) throws SAXException {
         switch (qName) {
             case ID:
-                itemCategory.setId(Integer.parseInt(elementValue.toString()));
+                latestItemCategory().setId(Integer.parseInt(elementValue.toString()));
                 break;
             case NAME:
-                itemCategory.setName(elementValue.toString());
+                latestItemCategory().setName(elementValue.toString());
                 break;
         }
     }
 
-    public ItemCategory getItemCategory() {
-        return this.itemCategory;
+    private ItemCategory latestItemCategory() {
+        int latestItemCategoryIndex = itemCategories.size() - 1;
+        return itemCategories.get(latestItemCategoryIndex);
+
+    }
+
+    public List<ItemCategory> getItemCategories() {
+        return itemCategories;
     }
 }
