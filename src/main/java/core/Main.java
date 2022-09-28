@@ -30,9 +30,7 @@ public class Main {
         UserServices.update(main.testUser2());
         UserServices.removeById(6);
         List result = new ItemCategoryDao().getAll();
-        result.forEach(r -> {
-            System.out.println(r);
-        });
+        result.forEach(i -> System.out.println(i));
     }
 
     UserGroup testUserGroup() {
