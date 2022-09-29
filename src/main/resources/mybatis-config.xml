@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <environments default="working">
+        <environment id="working">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/computer_repair"/>
+                <property name="username" value="root"/>
+                <property name="password" value="Solvd2022"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+<!--        <mapper resource="org/mybatis/example/BlogMapper.xml"/>-->
+        <mapper class="DAO.mybatis.ItemCategoryMapper"/>
+    </mappers>
+</configuration>

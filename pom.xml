@@ -16,6 +16,7 @@
         <log4j-version>2.18.0</log4j-version>
         <jaxb-version>2.3.0</jaxb-version>
         <jackson-version>2.13.4</jackson-version>
+        <mybatis-version>3.5.11</mybatis-version>
     </properties>
 
     <dependencies>
@@ -64,6 +65,10 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson-version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis-version}</version>
+        </dependency>
     </dependencies>
-
 </project>

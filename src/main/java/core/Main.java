@@ -9,6 +9,9 @@ package core;
 
 import DAO.models.*;
 import DAO.mySQL.ItemCategoryDao;
+import DAO.mybatis.ItemCategoryMapper;
+import DAO.mybatis.SqlSF;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,6 +25,7 @@ import services.UserServices;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import java.io.IOException;
 import java.util.List;
 
 public class Main {
@@ -153,4 +157,15 @@ public class Main {
         System.out.println("RESULT dao: \n" + jReadWrite.marshall(WORKORDER_DETAIL_JSN_PATH, Workorderdetail.class));
         System.out.println("RESULT dao: \n" + jReadWrite.marshall(USER_GROUP_JSN_PATH, UserGroup.class));
     }
+
+    public static void mybatisWork() {
+        try (SqlSession session = SqlSF.buildqlSessionFactory().openSession()) {
+            ItemCategory ic = session.getMapper(ItemCategoryMapper.class).selectAll().get(0);
+            System.out.println(ic);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
 }
