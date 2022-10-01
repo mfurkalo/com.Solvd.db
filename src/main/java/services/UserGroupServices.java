@@ -9,7 +9,7 @@ package services;
 
 import DAO.interfaces.IUserGroupsDAO;
 import DAO.models.UserGroup;
-import DAO.mySQL.UserGroupDao;
+import DAO.mybatis.UserGroupDao;
 
 public class UserGroupServices {
     private static IUserGroupsDAO<UserGroup> userGroupsDAO = new UserGroupDao();

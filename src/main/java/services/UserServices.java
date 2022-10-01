@@ -9,7 +9,7 @@ package services;
 
 import DAO.interfaces.IUserDAO;
 import DAO.models.User;
-import DAO.mySQL.UserDao;
+import DAO.mybatis.UserDao;
 
 public class UserServices {
     private static IUserDAO<User> userDAO = new UserDao();
