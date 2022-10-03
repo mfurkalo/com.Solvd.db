@@ -14,8 +14,8 @@ import org.apache.ibatis.annotations.*;
 public interface IUserGroupMapper {
     String getById = "SELECT * FROM user_groups WHERE id = #{id}";
     String createUserGroup = "INSERT INTO user_groups (name, description, allow_add, allow_edit, allow_delete," +
-            " allow_print, allow_import, allow_export) VALUES (#{name}, #{description}, #{allow_add}, #{allow_edit}," +
-            " #{allow_delete}, #{allow_print}, #{allow_import}, #{allow_export})";
+            " allow_print, allow_import, allow_export) VALUES (#{name}, #{description}, #{allowAdd}, #{allowEdit}," +
+            " #{allowDelete}, #{allowPrint}, #{allowImport}, #{allowExport})";
     String deleteById = "DELETE FROM user_groups WHERE  id = #{id}";
     String updateByName = "UPDATE user_groups SET description = #{description}, allow_add = #{allow_add}, allow_edit" +
             " = #{allow_edit}, allow_delete = #{allow_delete}, allow_print = #{allow_print}, allow_import =" +
