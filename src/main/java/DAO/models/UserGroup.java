@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "UserGroup")
 @XmlType(propOrder = {"id", "name", "description", "allowAdd", "allowEdit", "allowDelete", "allowPrint", "allowImport"
         , "allowExport"})
-public class UserGroup {
+public final class UserGroup {
     private int id;
     private String name;
     private String description;
@@ -26,6 +26,18 @@ public class UserGroup {
     private boolean allowExport;
 
     public UserGroup() {
+    }
+
+    private UserGroup(Builder builder) {
+        this.id = builder.id;
+        this.name = builder.name;
+        this.description = builder.description;
+        this.allowAdd = builder.allowAdd;
+        this.allowEdit = builder.allowEdit;
+        this.allowDelete = builder.allowDelete;
+        this.allowPrint = builder.allowPrint;
+        this.allowImport = builder.allowImport;
+        this.allowExport = builder.allowExport;
     }
 
     @Override
@@ -122,5 +134,47 @@ public class UserGroup {
     @XmlElement(name = "allowExport")
     public void setAllowExport(boolean allowExport) {
         this.allowExport = allowExport;
+    }
+
+    public static class Builder {
+        private int id;
+        private String name;
+        private String description;
+        private boolean allowAdd;
+        private boolean allowEdit;
+        private boolean allowDelete;
+        private boolean allowPrint;
+        private boolean allowImport;
+        private boolean allowExport;
+
+        public Builder(int id, String name) {
+            this.id = id;
+            this.name = name;
+        }
+
+        public Builder(int id) {
+            this.id = id;
+        }
+
+        public Builder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Builder permissions(boolean allowAdd, boolean allowEdit, boolean allowDelete, boolean allowPrint
+                , boolean allowImport
+                , boolean allowExport) {
+            this.allowAdd = allowAdd;
+            this.allowEdit = allowEdit;
+            this.allowDelete = allowDelete;
+            this.allowPrint = allowPrint;
+            this.allowImport = allowImport;
+            this.allowExport = allowExport;
+            return this;
+        }
+
+        public UserGroup build() {
+            return new UserGroup(this);
+        }
     }
 }

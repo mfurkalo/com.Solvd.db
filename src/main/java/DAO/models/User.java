@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "User")
 @XmlType(propOrder = {"id", "username", "password", "fullname", "phone", "email", "status", "group_id"})
 
-public class User {
+public final class User {
     private int id;
     private String username;
     private String password;
@@ -23,6 +23,20 @@ public class User {
     private String email;
     private int status;
     private int group_id;
+
+    public User() {
+    }
+
+    private User(Builder builder) {
+        this.id = builder.id;
+        this.username = builder.username;
+        this.password = builder.password;
+        this.fullname = builder.fullname;
+        this.phone = builder.phone;
+        this.email = builder.email;
+        this.status = builder.status;
+        this.group_id = builder.group_id;
+    }
 
     @Override
     public String toString() {
@@ -108,5 +122,55 @@ public class User {
     @XmlElement(name = "group_id")
     public void setGroup_id(int group_id) {
         this.group_id = group_id;
+    }
+
+    public static class Builder {
+        private int id;
+        private String username;
+        private String password;
+        private String fullname;
+        private String phone;
+        private String email;
+        private int status;
+        private int group_id;
+
+        public Builder(int id, String username) {
+            this.id = id;
+            this.username = username;
+        }
+
+        public Builder password(String password) {
+            this.password = password;
+            return this;
+        }
+
+        public Builder fullname(String fullname) {
+            this.fullname = fullname;
+            return this;
+        }
+
+        public Builder phone(String phone) {
+            this.phone = phone;
+            return this;
+        }
+
+        public Builder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder status(int status) {
+            this.status = status;
+            return this;
+        }
+
+        public Builder group_id(int group_id) {
+            this.group_id = group_id;
+            return this;
+        }
+
+        public User build() {
+            return new User(this);
+        }
     }
 }
