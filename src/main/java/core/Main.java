@@ -46,6 +46,8 @@ public class Main {
 
     public static void dbOperations() {
         Main main = new Main();
+        System.out.println(UserServices.getById(2));
+        UserServices.create(main.testUser());
         System.out.println(UserGroupServices.getById(2));
         UserGroupServices.create(main.testUserGroup());
         UserGroupServices.removeById(10);

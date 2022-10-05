@@ -11,6 +11,9 @@
         "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <properties resource="global.properties"/>
+    <typeAliases>
+        <typeAlias alias="User" type="DAO.models.User"/>
+    </typeAliases>
     <typeHandlers>
         <typeHandler handler="DAO.mybatis.IntToBoolTypeHandler"/>
     </typeHandlers>
@@ -31,6 +34,7 @@
     <mappers>
         <mapper class="DAO.mybatis.mapper.ItemCategoryMapper"/>
         <mapper class="DAO.mybatis.mapper.IUserGroupMapper"/>
-        <mapper class="DAO.mybatis.mapper.IUserMapper"/>
+<!--        <mapper class="DAO.mybatis.mapper.IUserMapper"/>-->
+        <mapper resource="mybatis/mappers/userMapper.xml"/>
     </mappers>
 </configuration>
