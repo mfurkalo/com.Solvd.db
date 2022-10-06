@@ -7,16 +7,16 @@
 
 package DAO.mybatis;
 
-import DAO.interfaces.IUserDAO;
+import DAO.interfaces.IBasicDAO;
 import DAO.models.User;
 import org.apache.ibatis.session.SqlSession;
 import utils.MyBatisFactory;
 
-public class UserDao implements IUserDAO<User> {
+public class UserDao implements IBasicDAO<User> {
     @Override
     public void create(User user) {
         SqlSession session = MyBatisFactory.getSession();
-        session.getMapper(IUserDAO.class).create(user);
+        session.getMapper(IBasicDAO.class).create(user);
         session.commit();
         session.close();
     }
@@ -24,7 +24,7 @@ public class UserDao implements IUserDAO<User> {
     @Override
     public User getById(int id) {
         SqlSession session = MyBatisFactory.getSession();
-        User result = (User) session.getMapper(IUserDAO.class).getById(id);
+        User result = (User) session.getMapper(IBasicDAO.class).getById(id);
         session.commit();
         session.close();
         return result;
@@ -33,7 +33,7 @@ public class UserDao implements IUserDAO<User> {
     @Override
     public void removeById(int id) {
         SqlSession session = MyBatisFactory.getSession();
-        session.getMapper(IUserDAO.class).removeById(id);
+        session.getMapper(IBasicDAO.class).removeById(id);
         session.commit();
         session.close();
     }
@@ -41,7 +41,7 @@ public class UserDao implements IUserDAO<User> {
     @Override
     public void update(User user) {
         SqlSession session = MyBatisFactory.getSession();
-        session.getMapper(IUserDAO.class).update(user);
+        session.getMapper(IBasicDAO.class).update(user);
         session.commit();
         session.close();
     }

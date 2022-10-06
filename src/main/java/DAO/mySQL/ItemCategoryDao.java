@@ -7,7 +7,7 @@
 
 package DAO.mySQL;
 
-import DAO.interfaces.IItemCategoryDAO;
+import DAO.interfaces.IBasicDAO;
 import DAO.models.ItemCategory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,7 +19,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemCategoryDao extends ShopSqlDao implements IItemCategoryDAO<ItemCategory> {
+public class ItemCategoryDao extends ShopSqlDao implements IBasicDAO<ItemCategory> {
     private static final Logger log = LogManager.getLogger(ItemCategoryDao.class.getName());
     public static final String CREATE_ITEMCATEGORY = "insert into item_categories (name) value (?)";
     public static final String GET_ITEMCATEGORY_BY_ID = "select * from item_categories where  id = ?";

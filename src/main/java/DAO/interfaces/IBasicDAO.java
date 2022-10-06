@@ -1,8 +1,8 @@
 /*
- *  Copyright (c)
- *  Maksym Furkalo,
- *  work with DB using the DAO pattern,
- *  use for free
+ * Copyright (c)
+ *   * Maksym Furkalo,
+ *   * work with DB using the DAO pattern,
+ *   * use for free
  */
 
 package DAO.interfaces;
@@ -10,7 +10,7 @@ package DAO.interfaces;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface IUserDAO<T> {
+public interface IBasicDAO<T> {
     void create(T user);
 
     T getById(int id);

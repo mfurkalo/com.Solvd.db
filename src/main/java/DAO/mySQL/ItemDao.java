@@ -7,7 +7,7 @@
 
 package DAO.mySQL;
 
-import DAO.interfaces.IItemDAO;
+import DAO.interfaces.IBasicDAO;
 import DAO.models.Item;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,7 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ItemDao extends ShopSqlDao implements IItemDAO<Item> {
+public class ItemDao extends ShopSqlDao implements IBasicDAO<Item> {
     private static final Logger log = LogManager.getLogger(ItemDao.class.getName());
     public static final String CREATE_ITEM = "insert into items (name, description, serial_no, amount, item_category," +
             " encoded_by) values (?, ?, ?, ?, ?, ?)";
