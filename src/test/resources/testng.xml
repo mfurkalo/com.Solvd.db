@@ -1,0 +1,21 @@
+<!--
+  ~ Copyright (c)
+  ~   * Maksym Furkalo,
+  ~   * work with DB using the DAO pattern,
+  ~   * use for free
+  -->
+
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Suite silly unit tests" verbose="1">
+
+    <test name="Parser" >
+        <classes>
+            <class name="core.ParserTest" />
+        </classes>
+    </test>
+    <test name="Main method">
+        <classes>
+            <class name="core.MainTest"/>
+        </classes>
+    </test>
+</suite>
