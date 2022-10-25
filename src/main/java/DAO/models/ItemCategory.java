@@ -14,9 +14,17 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "ItemCategory")
 @XmlType(propOrder = {"id", "name"})
 
-public class ItemCategory {
+public final class ItemCategory {
     private int id;
     private String name;
+
+    public ItemCategory() {
+    }
+
+    private ItemCategory(Builder builder) {
+        this.id = builder.id;
+        this.name = builder.name;
+    }
 
     @Override
     public String toString() {
@@ -42,5 +50,23 @@ public class ItemCategory {
     @XmlElement(name = "name")
     public void setName(String name) {
         this.name = name;
+    }
+
+    public static class Builder {
+        private int id;
+        private String name;
+
+        public Builder(String name) {
+            this.name = name;
+        }
+
+        public Builder id(int id) {
+            this.id = id;
+            return this;
+        }
+
+        public ItemCategory build() {
+            return new ItemCategory(this);
+        }
     }
 }

@@ -9,7 +9,8 @@ package services;
 
 import DAO.interfaces.IItemCategoryDAO;
 import DAO.models.ItemCategory;
-import DAO.mySQL.ItemCategoryDao;
+import DAO.mybatis.ItemCategoryDao;
+
 
 public class ItemCategoryServices {
     private static IItemCategoryDAO<ItemCategory> itemCategoryDAO = new ItemCategoryDao();
