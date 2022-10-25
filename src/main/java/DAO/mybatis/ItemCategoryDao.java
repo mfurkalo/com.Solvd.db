@@ -7,7 +7,7 @@
 
 package DAO.mybatis;
 
-import DAO.interfaces.IItemCategoryDAO;
+import DAO.interfaces.IBasicDAO;
 import DAO.models.ItemCategory;
 import DAO.mybatis.mapper.ItemCategoryMapper;
 import org.apache.ibatis.session.SqlSession;
@@ -15,7 +15,7 @@ import utils.MyBatisFactory;
 
 import java.util.List;
 
-public class ItemCategoryDao implements IItemCategoryDAO<ItemCategory> {
+public class ItemCategoryDao implements IBasicDAO<ItemCategory> {
     @Override
     public void create(ItemCategory itemCategory) {
         SqlSession session = MyBatisFactory.getSession();

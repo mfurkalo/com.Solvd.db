@@ -7,13 +7,13 @@
 
 package DAO.mybatis;
 
-import DAO.interfaces.IUserGroupsDAO;
+import DAO.interfaces.IBasicDAO;
 import DAO.models.UserGroup;
 import DAO.mybatis.mapper.IUserGroupMapper;
 import org.apache.ibatis.session.SqlSession;
 import utils.MyBatisFactory;
 
-public class UserGroupDao implements IUserGroupsDAO<UserGroup> {
+public class UserGroupDao implements IBasicDAO<UserGroup> {
     @Override
     public void create(UserGroup userGroup) {
         SqlSession session = MyBatisFactory.getSession();

@@ -7,12 +7,13 @@
 
 package services;
 
-import DAO.interfaces.IUserDAO;
+import DAO.interfaces.IBasicDAO;
 import DAO.models.User;
-import DAO.mybatis.UserDao;
+import DAO.mybatis.DaoBatisFactory;
+import utils.DaoType;
 
 public class UserServices {
-    private static IUserDAO<User> userDAO = new UserDao();
+    private static IBasicDAO<User> userDAO = new DaoBatisFactory().getDao(DaoType.USER);
 
     public static User getById(int id) {
         return userDAO.getById(id);

@@ -7,14 +7,17 @@
 
 package DAO.mySQL;
 
+import DAO.interfaces.IBasicDAO;
 import DAO.models.UserGroup;
-import DAO.interfaces.IUserGroupsDAO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class UserGroupDao extends ShopSqlDao implements IUserGroupsDAO<UserGroup> {
+public class UserGroupDao extends ShopSqlDao implements IBasicDAO<UserGroup> {
     private static final Logger log = LogManager.getLogger(UserGroupDao.class.getName());
     public static final String CREATE_USERGROUP = "insert into user_groups (name, description, allow_add, allow_edit," +
             " allow_delete, allow_print, allow_import, allow_export) values (?, ?, ?, ?, ?, ?, ?, ?)";
