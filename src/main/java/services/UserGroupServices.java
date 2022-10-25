@@ -7,12 +7,13 @@
 
 package services;
 
-import DAO.interfaces.IUserGroupsDAO;
+import DAO.interfaces.IBasicDAO;
 import DAO.models.UserGroup;
-import DAO.mySQL.UserGroupDao;
+import DAO.mybatis.DaoBatisFactory;
+import utils.DaoType;
 
 public class UserGroupServices {
-    private static IUserGroupsDAO<UserGroup> userGroupsDAO = new UserGroupDao();
+    private static IBasicDAO<UserGroup> userGroupsDAO = new DaoBatisFactory().getDao(DaoType.USER_GROUP);
 
     public static UserGroup getById(int id) {
         return userGroupsDAO.getById(id);

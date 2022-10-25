@@ -7,7 +7,7 @@
 
 package DAO.mySQL;
 
-import DAO.interfaces.IServiceDAO;
+import DAO.interfaces.IBasicDAO;
 import DAO.models.Service;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,7 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ServiceDao extends ShopSqlDao implements IServiceDAO<Service> {
+public class ServiceDao extends ShopSqlDao implements IBasicDAO<Service> {
     private static final Logger log = LogManager.getLogger(ServiceDao.class.getName());
     public static final String CREATE_SERVICE = "insert into services (name, description, amount) values (?, ?, ?)";
     public static final String GET_SERVICE_BY_ID = "select * from services where  id = ?";

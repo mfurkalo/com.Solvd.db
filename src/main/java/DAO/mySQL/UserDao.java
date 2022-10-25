@@ -7,7 +7,7 @@
 
 package DAO.mySQL;
 
-import DAO.interfaces.IUserDAO;
+import DAO.interfaces.IBasicDAO;
 import DAO.models.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,7 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserDao extends ShopSqlDao implements IUserDAO<User> {
+public class UserDao extends ShopSqlDao implements IBasicDAO<User> {
     private static final Logger log = LogManager.getLogger(UserDao.class.getName());
     public static final String CREATE_USER = "insert into users (username, password, fullname, phone, email, status," +
             "group_id) values (?, ?, ?, ?, ?, ?, ?)";

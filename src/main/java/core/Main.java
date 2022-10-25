@@ -8,7 +8,7 @@
 package core;
 
 import DAO.models.*;
-import DAO.mySQL.ItemCategoryDao;
+import DAO.mybatis.ItemCategoryDao;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -46,6 +46,8 @@ public class Main {
 
     public static void dbOperations() {
         Main main = new Main();
+        System.out.println(UserServices.getById(2));
+        UserServices.create(main.testUser());
         System.out.println(UserGroupServices.getById(2));
         UserGroupServices.create(main.testUserGroup());
         UserGroupServices.removeById(10);
@@ -57,40 +59,32 @@ public class Main {
     }
 
     UserGroup testUserGroup() {
-        UserGroup userGroup = new UserGroup();
-        userGroup.setName("tester6");
-        userGroup.setDescription("description");
-        userGroup.setAllowAdd(true);
-        userGroup.setAllowEdit(true);
-        userGroup.setAllowDelete(false);
-        userGroup.setAllowPrint(true);
-        userGroup.setAllowImport(false);
-        userGroup.setAllowExport(true);
-        return userGroup;
+        return new UserGroup.Builder(1, "tester66")
+                .description("new description")
+                .permissions(true, true, false, true, false, true)
+                .build();
     }
 
     User testUser() {
-        User user = new User();
-        user.setUsername("fortest");
-        user.setPassword("1235h");
-        user.setFullname("Georg First");
-        user.setPhone("11150689567");
-        user.setEmail("sample@email.com");
-        user.setStatus(1);
-        user.setGroup_id(6);
-        return user;
+        return new User.Builder(3, "Newtester")
+                .password("123567h")
+                .fullname("Donald Trump")
+                .phone("123456895")
+                .email("sample3@email.com")
+                .status(2)
+                .group_id(6)
+                .build();
     }
 
     User testUser2() {
-        User user = new User();
-        user.setUsername("fortest");
-        user.setPassword("1h");
-        user.setFullname("Georg Updated");
-        user.setPhone("1113333567");
-        user.setEmail("sample2@email.com");
-        user.setStatus(0);
-        user.setGroup_id(6);
-        return user;
+        return new User.Builder(9, "fortest")
+                .password("12356789")
+                .fullname("Georg Updated")
+                .phone("1113333567")
+                .email("sample2@email.com")
+                .status(0)
+                .group_id(6)
+                .build();
     }
 
     public static void xmlSaxOperation() {
@@ -115,9 +109,9 @@ public class Main {
 
     public static void marshal() throws JAXBException {
 
-        ItemCategory icat = new ItemCategory();
-        icat.setId(34);
-        icat.setName("Universal Category");
+        var icat = new ItemCategory.Builder("Universal Category")
+                .id(34)
+                .build();
         JAXBContext context = JAXBContext.newInstance(ItemCategory.class);
         Marshaller mar = context.createMarshaller();
         mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
@@ -146,9 +140,9 @@ public class Main {
 
     public static void jsonOperations() {
         JacksonReadWrite jReadWrite = new JacksonReadWrite();
-        ItemCategory icat = new ItemCategory();
-        icat.setId(34);
-        icat.setName("Universal Category");
+        var icat = new ItemCategory.Builder("Test Category")
+                .id(33)
+                .build();
         System.out.println("RESULT: \n" + jReadWrite.unmarshal(icat));
         System.out.println("RESULT dao: \n" + jReadWrite.marshall(WORKORDER_DETAIL_JSN_PATH, Workorderdetail.class));
         System.out.println("RESULT dao: \n" + jReadWrite.marshall(USER_GROUP_JSN_PATH, UserGroup.class));

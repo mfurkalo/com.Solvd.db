@@ -7,12 +7,14 @@
 
 package services;
 
-import DAO.interfaces.IItemCategoryDAO;
+import DAO.interfaces.IBasicDAO;
 import DAO.models.ItemCategory;
-import DAO.mySQL.ItemCategoryDao;
+import DAO.mybatis.DaoBatisFactory;
+import utils.DaoType;
+
 
 public class ItemCategoryServices {
-    private static IItemCategoryDAO<ItemCategory> itemCategoryDAO = new ItemCategoryDao();
+    private static IBasicDAO<ItemCategory> itemCategoryDAO = new DaoBatisFactory().getDao(DaoType.ITEM_CATEGORY);
 
     public static ItemCategory getById(int id) {
         return itemCategoryDAO.getById(id);
