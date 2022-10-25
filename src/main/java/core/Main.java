@@ -28,7 +28,7 @@ public class Main {
     static Logger log = LogManager.getLogger(Main.class.getName());
     public static final String ITEM_CATEGORY_PATH = "src/main/resources/xml/ItemCategory.xml";
     public static final String ITEM_CATEGORIES_PATH = "src/main/resources/xml/ItemCategories.xml";
-    public static final String ITEM_CATEGORIES_XSD_PATH = "src/main/resources/xml/ItemCategories.xsd";
+    public static final String ITEM_CATEGORY_XSD_PATH = "src/main/resources/xml/ItemCategory.xsd";
     public static final String SERVICE_PATH = "src/main/resources/xml/Service.xml";
     public static final String SERVICE_XSD_PATH = "src/main/resources/xml/Service.xsd";
     public static final String USER_GROUP_PATH = "src/main/resources/xml/UserGroup.xml";
@@ -93,7 +93,7 @@ public class Main {
         var itemCategories = new Parser().parse(ITEM_CATEGORIES_PATH, new ItemCategoryHandler())
                 .getItemCategories();
         itemCategories.forEach(i -> System.out.println(i));
-        System.out.printf("Is the ItemCategories.xml valid? : %s\n", new Parser().validate(ITEM_CATEGORIES_XSD_PATH
+        System.out.printf("Is the ItemCategories.xml valid? : %s\n", new Parser().validate(ITEM_CATEGORY_XSD_PATH
                 , ITEM_CATEGORIES_PATH));
         Service ser = new Parser().parse(SERVICE_PATH, new ServiceHandler()).getService();
         System.out.printf("Parsed service: %s\n", ser);
